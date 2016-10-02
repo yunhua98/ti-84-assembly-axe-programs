@@ -1,0 +1,180 @@
+.DOODLEJP
+.LEFT
+[1C2251D1C1417F2A->Pic1L
+.RIGHT
+[38448A8B8382FE54->Pic1R
+.SHOOT
+[1818245A66427E66->Pic1S
+.JET
+[304AEDCD4D4D7F2A->Pic1J
+.PLAT
+[000000007ED5AB7E->Pic0B
+[0000000000000000->Pic0C
+[003C42A57E000000->Pic3M
+[0000182424180000->Pic3S
+[00245A5ABD99997E->Pic3J
+[Pic1->Pic0T
+[Pic2->Pic1T
+ClrDraw
+ClrDraw^^r
+DiagnosticOff
+Lbl 1
+Copy(Pic0T,L6,768
+Copy(Pic1T,L3,768
+40->R
+Repeat getKey(54)
+	Pt-Off(20,R,Pic0C
+	R+(getKey(1)*10)-(getKey(4)*10)->R
+	If R=30
+		40->R
+	End
+	If R=60
+		50->R
+	End
+	Pt-On(20,R,Pic1R
+	DispGraph^^r
+End
+ClrDraw
+ClrDraw^^r
+If R=40
+	Goto A
+End
+If R=50
+	ClrDraw
+	ClrHome
+	Output(0,0,"THANKS TO QWERTY
+	Output(0,1,"FOR HELP ON
+	Output(0,2,"SPRITE ERASING
+	Pause 500
+	Repeat getKey(0)
+	End
+	Goto 1
+End
+
+Lbl A
+Pause 500
+For(A,0,3
+	Pt-On(rand^12*8,A*16,Pic0B
+	Pt-On(rand^12*8,A*16,Pic0B
+	Pt-On(rand^12*8,A*16,Pic0B
+End
+43->C
+55->R
+Line(0,63,95,63
+0->J->F->T->V->U->S->D->Y->O->N->H->L
+Copy(L6,L3,768
+Repeat getKey(15) or (R=64
+	Copy(L3,L6,768
+	C+getKey(3)-getKey(2)->C
+	If C=0
+		87->C
+	End
+	If C=88
+		1->C
+	End
+	If getKey(3)
+		8->theta
+	End
+	If getKey(2)
+		0->theta
+	End
+	If getKey(54) and (D=0
+		1->D
+		C->N
+		R->O
+		16->theta
+	End
+	If D=1
+		O-1->O
+	End
+	If O=0 or (O=1
+		0->D
+	End
+	If N-2<=Y and (N+2>=Y) and (O=W
+		Pt-Off(Y,O,Pic0B
+		0->D
+		S+50->S
+	End
+	
+	If C-7>=H and (C+7<=H) and (R>=L) and (R-16<=L
+		24->theta
+		0->E
+	End
+	If theta=24
+		E+1->E
+		Vertical+
+	End
+	If E=40
+		1->F
+		0->theta->E->J
+	End
+	
+	If (pxl-Test(C,R+8)+pxl-Test(C+7,R+8)+pxl-Test(C+4,R+8)) and ((pxl-Test(C,R+11)+pxl-Test(C+7,R+11)+pxl-Test(C+4,R+11))) or (pxl-Test(0,R+8) and (pxl-Test(95,R+8)) and (pxl-Test(64,R+8)
+		1->J
+		0->F
+		R->Q
+	End
+	If J=1
+		R-1->R
+	End
+	If R<=16
+		0->J
+		Vertical+
+		L+1->L
+		T+1->T
+		S+1->S
+		W+1->W
+	End
+	If T^16=0 and (T!=0
+		0->T+1->F
+		rand^12*8->X
+		If rand^30=0
+			X->H
+			0->L
+			Pt-Off(H,L,Pic3J
+		End
+		
+		If rand^20=0
+			X->Y
+			0->W
+			Pt-On(Y,0,Pic3M
+		End
+		
+		Pt-On(X,0,Pic0B
+		Pt-On(rand^12*8,0,Pic0B
+		Pt-On(rand^12*8,0,Pic0B
+	End
+	If Q-24=R
+		0->J
+		1->V
+	End
+	If V=1
+		U+1->U
+	End
+	If U=8 and (V=1
+		0->U->V
+		1->F
+	End
+	If F=1
+		R+1->R
+	End
+	Copy(L6,L3,768
+	Copy(L3,L6,768
+	Pt-Change(C,R,Pic1L+theta
+	If D=1
+		Pt-Change(N,O,Pic3S
+	End
+	DispGraph
+	ClrDraw
+End
+If R=64
+	Copy(L3,L6,768
+	For(A,1,64
+		Vertical-
+		Vertical+^^r
+		DispGraph^^r
+	End
+End
+Pause 250
+Output(0,0,"YOUR SCORE:
+Output(0,1,S>Dec
