@@ -1,0 +1,86 @@
+.FALLDOWN
+[0000000000000000->Pic0C
+[00000000FFD5ABFF->Pic0B
+[3C46C9B99D93623C->Pic1
+[3C4A91DDBB89523C->Pic12
+[3C7AB7C7E3ED5E3C->Pic21
+[3C76EFA3C5F76E3C->Pic22
+
+DiagnosticOff
+16->R->Q
+48->C->P
+0->T->F->S->G
+251->W
+ClrDraw
+ClrDraw^^r
+Repeat getKey(15) or (R<=0) or (Q<=0
+	If W!=0
+		W-1->W
+	End
+	ClrDraw
+	Copy(L3,L6,768
+	If T^10=0
+		0->theta
+	End
+	If T^20=0
+		8->theta
+	End
+	
+	If getKey(56)
+		Copy(L6,L3,768
+		ClrDraw
+		Shade(0
+		Repeat getKey(54) and (getKey(4)
+		End
+		Shade(50
+		Copy(L3,L6,768
+	End
+	C+((getKey(3) and (C!=88))*2)-((getKey(2) and (C!=0))*2)->C
+	P+((getKey(55) and (P!=88))*2)-((getKey(54) and (P!=0))*2)->P
+	T+1->T
+	If T^32=0
+		For(A,0,11
+			Pt-On(A*8,55,Pic0B
+		End
+		Pt-Off(rand^12*8,55,Pic0C
+		Pt-Off(rand^12*8,55,Pic0C
+	End
+	If pxl-Test(C,R+9) or (pxl-Test(C+7,R+9
+		0->F
+		R-1->R
+	End
+	If pxl-Test(P,Q+9) or (pxl-Test(P+7,Q+9
+		0->G
+		Q-1->Q
+	End
+	
+	If pxl-Test(C,R+9)=0 and (pxl-Test(C+7,R+9)=0
+		1->F
+	End
+	If pxl-Test(P,Q+9)=0 and (pxl-Test(P+7,Q+9)=0
+		1->G
+	End
+	If G=1 and (T>32) and (Q<52
+		Q+2->Q
+	End
+	If F=1 and (T>32) and (R<52
+		R+2->R
+	End
+	
+	If T^2=0
+		Vertical-
+	End
+	Copy(L6,L3,768
+	Pt-On(C,R,Pic1+theta
+	Pt-On(P,Q,Pic21+theta
+	
+	For(Z,1,W/10
+	End
+	DispGraph
+	S+1->S
+End
+ClrDraw
+ClrHome
+Output(0,0,"SCORE:
+Output(6,0,S>Dec
+Output(0,1,"THE GAME
